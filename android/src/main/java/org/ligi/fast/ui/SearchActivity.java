@@ -28,6 +28,7 @@ import android.widget.Toast;
 import org.ligi.axt.helpers.ViewHelper;
 import org.ligi.axt.simplifications.SimpleTextWatcher;
 import org.ligi.fast.App;
+import org.ligi.fast.Benchmark;
 import org.ligi.fast.R;
 import org.ligi.fast.background.BackgroundGatherAsyncTask;
 import org.ligi.fast.model.AppInfo;
@@ -37,6 +38,8 @@ import org.ligi.fast.util.AppInfoListStore;
 import org.ligi.tracedroid.sending.TraceDroidEmailSender;
 
 import java.util.Locale;
+
+import br.ufpe.cin.dashbench.configuration.Configurer;
 
 /**
  * The main Activity for this App - most things come together here
@@ -147,6 +150,8 @@ public class SearchActivity extends Activity implements App.PackageChangedListen
         }
 
         gridView.setAdapter(adapter);
+
+        Configurer.getInstance().configureAndRun(getIntent(), this, new Benchmark(App.getSettings(), this));
     }
 
     private void startAppWhenItItIsTheOnlyOneInList(boolean was_adding) {
