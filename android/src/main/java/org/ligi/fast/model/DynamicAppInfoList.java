@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
+import org.eclipse.collections.impl.list.mutable.FastList;
 
 /**
  * a dynamic AppInfoList is a AppInfoList that is sortable and queryable
@@ -33,7 +34,7 @@ public class DynamicAppInfoList extends AppInfoList {
 
     @Override
     public void update(List<AppInfo> pkgAppsListAll) {
-        final List<AppInfo> appsToRemove = new ArrayList<>();
+        final List<AppInfo> appsToRemove = new FastList<>();
         for (AppInfo localApp : backingAppInfoList) {
             if (getAppWithHash(localApp.getHash(), pkgAppsListAll) == null) {
                 appsToRemove.add(localApp);
