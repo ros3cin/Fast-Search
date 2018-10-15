@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
+import org.apache.commons.collections4.list.TreeList;
 
 /**
  * a dynamic AppInfoList is a AppInfoList that is sortable and queryable
@@ -27,13 +28,13 @@ public class DynamicAppInfoList extends AppInfoList {
     @SuppressWarnings("unchecked")
     public DynamicAppInfoList(List<AppInfo> backingAppInfoList, FASTSettings settings) {
         this.settings = settings;
-        this.backingAppInfoList=new ArrayList<>();
+        this.backingAppInfoList=new TreeList<>();
         update(backingAppInfoList);
     }
 
     @Override
     public void update(List<AppInfo> pkgAppsListAll) {
-        final List<AppInfo> appsToRemove = new ArrayList<>();
+        final List<AppInfo> appsToRemove = new TreeList<>();
         for (AppInfo localApp : backingAppInfoList) {
             if (getAppWithHash(localApp.getHash(), pkgAppsListAll) == null) {
                 appsToRemove.add(localApp);
